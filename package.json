@@ -2,8 +2,15 @@
   "dependencies": {
     "canvas-confetti": "1.9.2"
   },
+  "workspaces": [
+    "react-course/*"
+  ],
   "devDependencies": {
     "standard": "^17.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valdir169/react-course.git"
   },
   "homepage": "https://github.com/valdir169/react-course#readme",
   "eslintConfig": {
