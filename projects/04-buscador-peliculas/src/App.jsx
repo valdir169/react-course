@@ -29,35 +29,24 @@ function useSearch() {
       return
     }
     setError(null)
-
   }, [search])
 
   return { search, updateSearch, error }
-
 }
 
-
 function App() {
-  const { movies } = useMovies()
   const { search, updateSearch, error } = useSearch()
+  const { movies, getMovies, loading } = useMovies({ search })
+
 
   const handleSubmit = (event) => {
     event.preventDefault()
-
-    // //de forma no controlada para varios input
-    // const data = Object.fromEntries(new window.FormData(event.target))
-
-    console.log({ search })
+    getMovies()
   }
 
   const handleChange = (event) => {
-    // const newQuery = event.target.value
-    // setQuery(newQuery)
     updateSearch(event.target.value)
-
   }
-
-
 
   return (
     <div>
@@ -65,19 +54,24 @@ function App() {
         <h1>BUscador de películas</h1>
         <form className="form" onSubmit={handleSubmit} >
           <input
-            // para la forma controlada
             onChange={handleChange}
             value={search}
             style={{ border: '1px solid transparent', borderColor: error ? 'red' : 'transparent' }}
             name="query" type="text" placeholder='Avengers, Matrix, etc...' />
-
           <button type='submit'>Search</button>
         </form>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
 
       <main>
-        <Movies movies={movies} />
+        {loading ?
+          <div style={{ height: '80vh', color: 'cyan', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <p>Cargando...</p>
+          </div>
+
+          : <Movies movies={movies} />
+        }
+
       </main>
     </div>
   )
