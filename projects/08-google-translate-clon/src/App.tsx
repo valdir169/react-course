@@ -1,12 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, Row } from 'react-bootstrap';
 
 import './App.css';
-import { useStore } from './hooks/store';
+import { useStore } from './hooks/store'
 
 function App() {
-  const { fromLanguage, toLanguage, interChangeLanguage } = useStore();
-  
+  const { fromLanguage, toLanguage, interChangeLanguage } = useStore()
+
   return (
     <div>
       <h1>Google Translate</h1>
